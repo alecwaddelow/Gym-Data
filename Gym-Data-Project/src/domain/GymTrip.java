@@ -6,7 +6,6 @@ import java.util.Date;
  * @author Alec Waddelow
  *
  * Class that holds data relevant to a trip to the gym 
- *
  */
 public class GymTrip 
 {
@@ -17,6 +16,7 @@ public class GymTrip
 	double lengthOfSauna;
 	int weight;
 	String comment;
+	
 	/**
 	 * Standard Constructor
 	 * 
