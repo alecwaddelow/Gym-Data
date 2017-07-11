@@ -1,7 +1,7 @@
 package data_source;
 
-import java.util.Date;
-
+import java.sql.Date;
+import java.sql.SQLException;
 import domain.TripDTO;
 
 /**
@@ -13,9 +13,9 @@ import domain.TripDTO;
  */
 public interface RowDataGateway 
 {
-	public void addRow(Date date, double lengthofTrip, double lengthOfCardio, double lengthOfLifting, double lengthOfSauna, int weight, String comment);
+	public void addRow() throws SQLException;
 	
-	public void updateRow(Date date, double lengthofTrip, double lengthOfCardio, double lengthOfLifting, double lengthOfSauna, int weight, String comment);
+	public void updateRow(Date date);
 	
 	public void deleteRow(Date date);
 	

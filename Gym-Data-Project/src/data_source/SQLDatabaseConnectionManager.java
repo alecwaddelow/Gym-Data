@@ -12,19 +12,13 @@ import com.microsoft.sqlserver.jdbc.*;
 public class SQLDatabaseConnectionManager 
 {
 		private static SQLDatabaseConnectionManager singleton;
+		private Connection connection;
 	
-		public static SQLDatabaseConnectionManager getSingleton()
-		{
-			if(singleton == null)
-			{
-				singleton = new SQLDatabaseConnectionManager();
-			}
-			return singleton;
-		}
-		
+		/**
+		 * Established the connection to the database upon object construction
+		 */
 		private SQLDatabaseConnectionManager()
 		{
-			Connection connection = null;
 			
 			try {
 				// Establish the connection. 
@@ -44,5 +38,26 @@ public class SQLDatabaseConnectionManager
 			finally {
 				if (connection != null) try { connection.close(); } catch(Exception e) {e.printStackTrace();}
 			}
+		}
+		/**
+		 * Returns the singleton connection manager
+		 * @return singleton of the object
+		 */
+		public static SQLDatabaseConnectionManager getSingleton()
+		{
+			if(singleton == null)
+			{
+				singleton = new SQLDatabaseConnectionManager();
+			}
+			return singleton;
+		}
+		
+		/**
+		 * Gets the connection to the database
+		 * @return connection
+		 */
+		public Connection getConnection()
+		{
+			return connection;
 		}
 }
