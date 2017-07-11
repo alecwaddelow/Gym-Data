@@ -45,7 +45,7 @@ public class GymTrip
 	 * @return the date
 	 */
 	public Date getDate() {
-		return date;
+		return this.date;
 	}
 	/**
 	 * @param date the date to set
@@ -57,7 +57,7 @@ public class GymTrip
 	 * @return the lengthOfTrip
 	 */
 	public double getLengthOfTrip() {
-		return lengthOfTrip;
+		return this.lengthOfTrip;
 	}
 	/**
 	 * @param lengthOfTrip the lengthOfTrip to set
@@ -69,7 +69,7 @@ public class GymTrip
 	 * @return the lengthOfCardio
 	 */
 	public double getLengthOfCardio() {
-		return lengthOfCardio;
+		return this.lengthOfCardio;
 	}
 	/**
 	 * @param lengthOfCardio the lengthOfCardio to set
@@ -81,7 +81,7 @@ public class GymTrip
 	 * @return the lengthOfLifting
 	 */
 	public double getLengthOfLifting() {
-		return lengthOfLifting;
+		return this.lengthOfLifting;
 	}
 	/**
 	 * @param lengthOfLifting the lengthOfLifting to set
@@ -93,7 +93,7 @@ public class GymTrip
 	 * @return the lengthOfSauna
 	 */
 	public double getLengthOfSauna() {
-		return lengthOfSauna;
+		return this.lengthOfSauna;
 	}
 	/**
 	 * @param lengthOfSauna the lengthOfSauna to set
@@ -105,7 +105,7 @@ public class GymTrip
 	 * @return the weight
 	 */
 	public int getWeight() {
-		return weight;
+		return this.weight;
 	}
 	/**
 	 * @param weight the weight to set
@@ -117,7 +117,7 @@ public class GymTrip
 	 * @return the comment
 	 */
 	public String getComment() {
-		return comment;
+		return this.comment;
 	}
 	/**
 	 * @param comment the comment to set
@@ -131,8 +131,8 @@ public class GymTrip
 	 */
 	@Override
 	public String toString() {
-		return "GymTrip [date=" + date + ", lengthOfTrip=" + lengthOfTrip + ", lengthOfCardio=" + lengthOfCardio
-				+ ", lengthOfLifting=" + lengthOfLifting + ", lengthOfSauna=" + lengthOfSauna + ", weight=" + weight
-				+ ", comment=" + comment + "]";
+		return "GymTrip [date=" + this.date + ", lengthOfTrip=" + this.lengthOfTrip + ", lengthOfCardio=" + this.lengthOfCardio
+				+ ", lengthOfLifting=" + this.lengthOfLifting + ", lengthOfSauna=" + this.lengthOfSauna + ", weight=" + this.weight
+				+ ", comment=" + this.comment + "]";
 	}
 }
