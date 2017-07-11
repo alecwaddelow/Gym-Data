@@ -1,13 +1,9 @@
-/**
- * 
- */
 package data_source;
 
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 import domain.TripDTO;
 
 /**
@@ -41,7 +37,6 @@ public class TripRowDataGateway implements RowDataGateway
 	public TripRowDataGateway(Date date, double lengthOfTrip, double lengthOfCardio, double lengthOfLifting, double lengthOfSauna,
 			int weight, String comment) 
 	{
-		super();
 		this.date = date;
 		this.lengthOfTrip = lengthOfTrip;
 		this.lengthOfCardio = lengthOfCardio;
