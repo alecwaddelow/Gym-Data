@@ -58,7 +58,7 @@ public class TripRowDataGateway implements RowDataGateway
 	public void addRow() throws SQLException 
 	{
 		connection = SQLDatabaseConnectionManager.getSingleton().getConnection();
-		String addSql = "INSERT INTO Gym_Data (date, lengthOfTrip, lengthOfCardio, lengthOfLifting, lengthOfSauna, weight, comment) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String addSql = "INSERT INTO dbo.TripData (date, lengthOfTrip, lengthOfCardio, lengthOfLifting, lengthOfSauna, weight, comment) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		
 		PreparedStatement stmt = connection.prepareStatement(addSql);
 		stmt.setDate(1, this.date);
