@@ -35,7 +35,6 @@ public class TripDTO
 	public TripDTO(Date date, double lengthOfTrip, double lengthOfCardio, double lengthOfLifting, double lengthOfSauna,
 			int weight, String comment) 
 	{
-		super();
 		this.date = date;
 		this.lengthOfTrip = lengthOfTrip;
 		this.lengthOfCardio = lengthOfCardio;

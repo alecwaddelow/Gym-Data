@@ -52,7 +52,7 @@ public class TripRowDataGateway implements RowDataGateway
 	}
 	
 	/* (non-Javadoc)
-	 * @see data_source.RowDataGateway#addRow(java.util.Date, double, double, double, double, int, java.lang.String)
+	 * @see data_source.RowDataGateway#addRow(Date, double, double, double, double, int, java.lang.String)
 	 */
 	@Override
 	public void addRow() throws SQLException 
