@@ -13,11 +13,31 @@ import domain.TripDTO;
  */
 public interface RowDataGateway 
 {
+	/**
+	 * Adds a row
+	 * 
+	 * @throws SQLException
+	 */
 	public void addRow() throws SQLException;
 	
-	public void updateRow(Date date);
+	/**
+	 * Updates a row based on the date 
+	 * 
+	 * @param date
+	 * @throws SQLException
+	 */
+	public void updateRow(Date date) throws SQLException;
 	
+	/**
+	 * Deletes a row based on the date 
+	 * @param date
+	 */
 	public void deleteRow(Date date);
 	
+	/**
+	 * Retrieves a row based on the date
+	 * @param date
+	 * @return TripDTO containing all of the information from that row
+	 */
 	public TripDTO retrieveRow(Date date);
 }

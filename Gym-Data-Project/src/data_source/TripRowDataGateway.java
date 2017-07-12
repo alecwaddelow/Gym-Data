@@ -53,7 +53,7 @@ public class TripRowDataGateway implements RowDataGateway
 	public void addRow() throws SQLException 
 	{
 		connection = SQLDatabaseConnectionManager.getSingleton().getConnection();
-		String addSql = "INSERT INTO dbo.TripData (date, lengthOfTrip, lengthOfCardio, lengthOfLifting, lengthOfSauna, weight, comment) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String addSql = "INSERT INTO dbo.TripData (date, lengthOfTrip, lengthOfCardio, lengthOfLifting, lengthOfSauna, weight, comment) VALUES (?, ?, ?, ?, ?, ?, ?);";
 		
 		PreparedStatement stmt = connection.prepareStatement(addSql);
 		stmt.setDate(1, this.date);
@@ -72,10 +72,21 @@ public class TripRowDataGateway implements RowDataGateway
 	 * @see data_source.RowDataGateway#updateRow(java.util.Date, double, double, double, double, int, java.lang.String)
 	 */
 	@Override
-	public void updateRow(Date date) 
+	public void updateRow(Date date) throws SQLException 
 	{
-		// TODO Auto-generated method stub
-		
+		connection = SQLDatabaseConnectionManager.getSingleton().getConnection();
+		String updateSql = "UPDATE dbo.TripData SET lengthOfTrip = ?, lengthOfCardio = ?, lengthOfLifting = ?, lengthOfSauna = ?, weight = ?, comment = ? WHERE date = ?;";
+		PreparedStatement stmt = connection.prepareStatement(updateSql);
+		stmt.setDouble(1, this.lengthOfTrip);
+		stmt.setDouble(2, this.lengthOfCardio);
+		stmt.setDouble(3, this.lengthOfLifting);
+		stmt.setDouble(4, this.lengthOfSauna);
+		stmt.setInt(5, this.weight);
+		stmt.setString(6, this.comment);
+		stmt.setDate(7, date);
+		stmt.executeUpdate();
+		stmt.close();
+		connection.close();
 	}
 
 	/* (non-Javadoc)
