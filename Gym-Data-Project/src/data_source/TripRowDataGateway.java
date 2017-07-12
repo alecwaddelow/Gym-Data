@@ -52,7 +52,7 @@ public class TripRowDataGateway implements RowDataGateway
 	@Override
 	public void addRow() throws SQLException 
 	{
-		connection = SQLDatabaseConnectionManager.getSingleton().getConnection();
+		connection = ConnectionManager.INSTANCE.connection;
 		String addSql = "INSERT INTO dbo.TripData (date, lengthOfTrip, lengthOfCardio, lengthOfLifting, lengthOfSauna, weight, comment) VALUES (?, ?, ?, ?, ?, ?, ?);";
 		
 		PreparedStatement stmt = connection.prepareStatement(addSql);
@@ -74,7 +74,7 @@ public class TripRowDataGateway implements RowDataGateway
 	@Override
 	public void updateRow(Date date) throws SQLException 
 	{
-		connection = SQLDatabaseConnectionManager.getSingleton().getConnection();
+		connection = ConnectionManager.INSTANCE.connection;
 		String updateSql = "UPDATE dbo.TripData SET lengthOfTrip = ?, lengthOfCardio = ?, lengthOfLifting = ?, lengthOfSauna = ?, weight = ?, comment = ? WHERE date = ?;";
 		PreparedStatement stmt = connection.prepareStatement(updateSql);
 		stmt.setDouble(1, this.lengthOfTrip);
