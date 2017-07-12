@@ -127,6 +127,9 @@ public class TripRowDataGateway implements RowDataGateway
 		{
 			dto = new TripDTO(rs.getDate(1), rs.getDouble(2), rs.getDouble(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6), rs.getString(7));
 		}
+		stmt.close();
+		rs.close();
+		connection.close();
 		return dto;
 	}
 }
