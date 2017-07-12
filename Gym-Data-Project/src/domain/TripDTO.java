@@ -13,13 +13,13 @@ import java.util.Date;
 public class TripDTO 
 {
 	
-	Date date;
-	double lengthOfTrip;
-	double lengthOfCardio;
-	double lengthOfLifting;
-	double lengthOfSauna;
-	int weight;
-	String comment;
+	protected Date date;
+	protected double lengthOfTrip;
+	protected double lengthOfCardio;
+	protected double lengthOfLifting;
+	protected double lengthOfSauna;
+	protected int weight;
+	protected String comment;
 	
 	/**
 	 * Standard constructor

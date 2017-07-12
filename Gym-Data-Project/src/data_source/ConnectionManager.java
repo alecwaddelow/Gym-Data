@@ -6,7 +6,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 public enum ConnectionManager 
 {
 	INSTANCE;
-	Connection connection;
+	protected Connection connection;
 	ConnectionManager()
 	{
 		try {
