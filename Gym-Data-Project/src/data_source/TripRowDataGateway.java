@@ -15,7 +15,6 @@ import domain.TripDTO;
  */
 public class TripRowDataGateway implements RowDataGateway
 {
-	protected Connection connection;
 	protected Date date;
 	protected double lengthOfTrip;
 	protected double lengthOfCardio;
@@ -54,10 +53,10 @@ public class TripRowDataGateway implements RowDataGateway
 	@Override
 	public void addRow() throws SQLException 
 	{
-		connection = ConnectionManager.INSTANCE.connection;
+		DBConnection connection = new DBConnection();
 		String addSql = "INSERT INTO dbo.TripData (date, lengthOfTrip, lengthOfCardio, lengthOfLifting, lengthOfSauna, weight, comment) VALUES (?, ?, ?, ?, ?, ?, ?);";
 		
-		PreparedStatement stmt = connection.prepareStatement(addSql);
+		PreparedStatement stmt = connection.getConnection().prepareStatement(addSql);
 		stmt.setDate(1, this.date);
 		stmt.setDouble(2, this.lengthOfTrip);
 		stmt.setDouble(3, this.lengthOfCardio);
@@ -77,9 +76,9 @@ public class TripRowDataGateway implements RowDataGateway
 	@Override
 	public void updateRow(Date date) throws SQLException 
 	{
-		connection = ConnectionManager.INSTANCE.connection;
+		DBConnection connection = new DBConnection();
 		String updateSql = "UPDATE dbo.TripData SET lengthOfTrip = ?, lengthOfCardio = ?, lengthOfLifting = ?, lengthOfSauna = ?, weight = ?, comment = ? WHERE date = ?;";
-		PreparedStatement stmt = connection.prepareStatement(updateSql);
+		PreparedStatement stmt = connection.getConnection().prepareStatement(updateSql);
 		stmt.setDouble(1, this.lengthOfTrip);
 		stmt.setDouble(2, this.lengthOfCardio);
 		stmt.setDouble(3, this.lengthOfLifting);
@@ -99,9 +98,9 @@ public class TripRowDataGateway implements RowDataGateway
 	@Override
 	public void deleteRow(Date date) throws SQLException
 	{
-		connection = ConnectionManager.INSTANCE.connection;
+		DBConnection connection = new DBConnection();
 		String deleteSql = "DELETE FROM dbo.TripData WHERE date = ?;";
-		PreparedStatement stmt = connection.prepareStatement(deleteSql);
+		PreparedStatement stmt = connection.getConnection().prepareStatement(deleteSql);
 		stmt.setDate(1, date);
 		stmt.executeUpdate();
 		stmt.close();
@@ -116,10 +115,10 @@ public class TripRowDataGateway implements RowDataGateway
 	public TripDTO retrieveRow(Date date) throws SQLException 
 	{
 		TripDTO dto = null;
-		connection = ConnectionManager.INSTANCE.connection;
+		DBConnection connection = new DBConnection();
 		String retrieveSql = "SELECT date, lengthOfTrip, lengthOfCardio, lengthOfLifting, lengthOfSauna, weight, comment";
 		retrieveSql+= "FROM dbo.TripData WHERE date = ?;";
-		PreparedStatement stmt = connection.prepareStatement(retrieveSql);
+		PreparedStatement stmt = connection.getConnection().prepareStatement(retrieveSql);
 		stmt.setDate(1, date);
 		ResultSet rs = stmt.executeQuery();
 		
