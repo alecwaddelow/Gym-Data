@@ -3,6 +3,7 @@ package data_source;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import domain.TripDTO;
 
@@ -46,7 +47,8 @@ public class TripRowDataGateway implements RowDataGateway
 		this.comment = comment;
 	}
 	
-	/* (non-Javadoc)
+	/**
+	 * @throws SQLException 
 	 * @see data_source.RowDataGateway#addRow(Date, double, double, double, double, int, java.lang.String)
 	 */
 	@Override
@@ -68,7 +70,8 @@ public class TripRowDataGateway implements RowDataGateway
 		connection.close();
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * @throws SQLException 
 	 * @see data_source.RowDataGateway#updateRow(java.util.Date, double, double, double, double, int, java.lang.String)
 	 */
 	@Override
@@ -89,22 +92,41 @@ public class TripRowDataGateway implements RowDataGateway
 		connection.close();
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * @throws SQLException 
 	 * @see data_source.RowDataGateway#deleteRow(java.util.Date)
 	 */
 	@Override
-	public void deleteRow(Date date) {
-		// TODO Auto-generated method stub
-		
+	public void deleteRow(Date date) throws SQLException
+	{
+		connection = SQLDatabaseConnectionManager.getSingleton().getConnection();
+		String deleteSql = "DELETE FROM dbo.TripData WHERE date = ?;";
+		PreparedStatement stmt = connection.prepareStatement(deleteSql);
+		stmt.setDate(1, date);
+		stmt.executeUpdate();
+		stmt.close();
+		connection.close();
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * @throws SQLException 
 	 * @see data_source.RowDataGateway#retrieveRow(java.util.Date)
 	 */
 	@Override
-	public TripDTO retrieveRow(Date date) {
-		// TODO Auto-generated method stub
-		return null;
+	public TripDTO retrieveRow(Date date) throws SQLException 
+	{
+		TripDTO dto = null;
+		connection = SQLDatabaseConnectionManager.getSingleton().getConnection();
+		String retrieveSql = "SELECT date, lengthOfTrip, lengthOfCardio, lengthOfLifting, lengthOfSauna, weight, comment";
+		retrieveSql+= "FROM dbo.TripData WHERE date = ?;";
+		PreparedStatement stmt = connection.prepareStatement(retrieveSql);
+		stmt.setDate(1, date);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next())
+		{
+			dto = new TripDTO(rs.getDate(1), rs.getDouble(2), rs.getDouble(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6), rs.getString(7));
+		}
+		return dto;
 	}
-
 }
