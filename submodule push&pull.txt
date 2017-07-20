@@ -1,0 +1,8 @@
+commit in submodule
+right click commit in sub, push.
+go back to main
+3 little dots of submodule, commit changes.
+push
+
+to pull: 
+pull from each submodule, NOT main
